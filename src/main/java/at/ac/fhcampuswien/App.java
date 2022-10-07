@@ -4,34 +4,227 @@ import java.util.Scanner;
 
 public class App {
 
-    //todo Task 1
     public void largestNumber(){
-        // input your solution here
+
+        int i = 1;
+        double currentNumber;
+        double largestNumber = 0;
+        Scanner scanner = new Scanner( System.in );
+
+        System.out.print( "Number " + i + ": ");
+        currentNumber = scanner.nextDouble();
+
+        if( currentNumber <= 0 )
+        {
+            System.out.println( "No number entered." );
+        }
+        else
+        {
+            i++;
+            while( currentNumber > 0 )
+            {
+                System.out.print( "Number " + i + ": ");
+                currentNumber = scanner.nextDouble();
+
+                if( largestNumber < currentNumber ) {
+                    largestNumber = currentNumber;
+                }
+
+                i++;
+            }
+
+            System.out.println( "The largest number is " + String.format( "%.2f", largestNumber ) );
+        }
+
     }
 
-    //todo Task 2
     public void stairs(){
-        // input your solution here
+
+        int n;
+        int numberToPrint = 1;
+        Scanner scanner = new Scanner( System.in );
+
+        System.out.print( "n: " );
+        n = scanner.nextInt();
+
+        if( n <= 0 )
+        {
+            System.out.println( "Invalid number!" );
+        }
+        else
+        {
+            for( int i = 1; i <= n; i++ )
+            {
+                for( int j = 0; j < i; j++ )
+                {
+                    System.out.print( numberToPrint + " ");
+                    numberToPrint++;
+                }
+                System.out.println();
+            }
+        }
+
     }
 
-    //todo Task 3
     public void printPyramid(){
-        // input your solution here
+
+        final int PYRAMID_SIZE = 6;
+
+        for( int i = 1; i <= PYRAMID_SIZE; i++ )
+        {
+            for( int j = i; j < PYRAMID_SIZE; j++ )
+            {
+                System.out.print( " " );
+            }
+
+            for( int k = 1; k < ( 2*i ); k++ )
+            {
+                System.out.print( "*" );
+            }
+            System.out.println();
+        }
     }
 
-    //todo Task 4
     public void printRhombus(){
-        // input your solution here
+        int h;
+        char c;
+        Scanner scanner = new Scanner( System.in );
+
+        System.out.print( "h: " );
+        h = scanner.nextInt();
+
+        System.out.print( "c: " );
+        c = scanner.next().charAt( 0 );
+
+        if( h % 2 == 0 )
+        {
+            System.out.println( "Invalid number!" );
+        }
+        else
+        {
+            // Upper half
+            for( int i = 1; i <=  ( h / 2 ) + 1; i++ )
+            {
+                // Print spaces for alignment
+                for( int j = 1; j <= h - i - 2; j++ )
+                {
+                    System.out.print( " " );
+                }
+
+                // Print char sequence in first triangle
+                for( int k = i; k >= 1; k-- )
+                {
+                    System.out.print( (char)( c - k + 1 ) );
+                }
+
+                // Print char sequence in second triangle
+                for( int l = 2; l <= i; l++ )
+                {
+                    System.out.print( (char)( c - l + 1 ) );
+                }
+
+                System.out.println();
+            }
+
+            // Lower half
+            for( int i = ( h / 2 ); i >= 1; i-- )
+            {
+                for( int j = 1; j <= h - i - 2; j++ )
+                {
+                    System.out.print( " " );
+                }
+                for( int k = i; k >= 1; k-- )
+                {
+                    System.out.print( (char)( c - k + 1 ) );
+                }
+                for( int l = 2; l <= i; l++ )
+                {
+                    System.out.print( (char)( c - l + 1 ) );
+                }
+                System.out.println();
+            }
+        }
     }
 
-    //todo Task 5
     public void marks(){
-        // input your solution here
+
+        double grade;
+        double sumGrades = 0;
+        double average;
+        int countGrades = 0;
+        int countNegatives = 0;
+        Scanner scanner = new Scanner( System.in );
+
+        System.out.print( "Mark " + ( countGrades + 1 )  + ": " );
+        grade = scanner.nextDouble();
+
+        while( grade != 0 )
+        {
+            if( grade < 0 || grade > 5 )
+            {
+                System.out.println( "Invalid mark!" );
+            }
+            else
+            {
+                if( grade == 5 )
+                {
+                    countNegatives++;
+                }
+
+                sumGrades += grade;
+                countGrades++;
+            }
+
+            System.out.print( "Mark " + ( countGrades + 1 ) + ": " );
+            grade = scanner.nextDouble();
+        }
+
+        if( sumGrades == 0 )
+        {
+            System.out.println( "Average: " + String.format( "%.2f", sumGrades ) );
+        }
+        else
+        {
+            average = sumGrades / countGrades;
+            System.out.println( "Average: " + String.format( "%.2f", average ) );
+        }
+
+        System.out.println( "Negative marks: " + countNegatives );
+
     }
 
-    //todo Task 6
     public void happyNumbers(){
-        // input your solution here
+
+        int number;
+        int digit;
+        int sum = 0;
+        Scanner scanner = new Scanner( System.in );
+
+        System.out.print( "n: " );
+        number = scanner.nextInt();
+
+        while( number > 9 )
+        {
+            while( number > 0 )
+            {
+                digit = number % 10;
+                sum +=  digit * digit;
+                number /= 10;
+            }
+
+            number = sum;
+            sum = 0;
+        }
+
+        if( number == 1 )
+        {
+            System.out.println( "Happy number!" );
+        }
+        else
+        {
+            System.out.println( "Sad number!" );
+        }
+
     }
 
     public static void main(String[] args){
